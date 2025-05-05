@@ -1,11 +1,12 @@
 import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
 import {
   DbValidationService,
   UseDbValidationSimple,
+  ValidationOptions,
 } from '@slaega/db-validation';
-import { AppValidationRule } from './app-validation.rule';
-import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { AppValidationRule } from './app-validation.rule';
 import { User } from './datasource/entity';
 @Injectable()
 export class AppService {
@@ -14,8 +15,11 @@ export class AppService {
     @InjectRepository(User) readonly userRepository: Repository<User>,
   ) {}
   @UseDbValidationSimple(AppValidationRule, 'updateUser')
-  async createUser(body: Record<string, any>): Promise<string> {
-    console.log(body);
+  async createUser(
+    body: Record<string, any>,
+    options?: ValidationOptions,
+  ): Promise<string> {
+    console.log('options', options);
     const user = new User();
     user.email = body.email;
     user.name = body.name;

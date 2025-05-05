@@ -4,7 +4,7 @@ import { User } from './datasource/entity';
 export class AppValidationRule {
   createUser({ email }: Record<string, any>) {
     console.log('start');
-    return ValidationBuilderFactory.forPrisma().unique('User', {
+    return ValidationBuilderFactory.forPrisma().unique('user', {
       email,
     });
   }

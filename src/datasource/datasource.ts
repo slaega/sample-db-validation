@@ -6,5 +6,5 @@ export const typeorm = new DataSource({
   database: './prisma/test.db',
   entities: [User, Lois, Product],
   synchronize: false,
-  logging: true,
+  logging: false,
 });

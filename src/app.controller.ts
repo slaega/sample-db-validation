@@ -6,7 +6,8 @@ export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Post()
-  createUser(@Body() body: Record<string, any>): Promise<string> {
-    return this.appService.createUser(body);
+  async createUser(@Body() body: Record<string, any>): Promise<string> {
+    console.log('-----------');
+    return await this.appService.createUser(body);
   }
 }
